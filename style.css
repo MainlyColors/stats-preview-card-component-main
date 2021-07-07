@@ -52,11 +52,12 @@ table {
   border-spacing: 0;
 }
 
-root {
+:root {
   font-size: 62.5%; /* 10 px */
+  box-sizing: border-box;
   --primary-bg-color: hsl(233, 47%, 7%);
   --primary-card-color: hsl(244, 38%, 16%);
-  --primary-accent-color: hsl(277, 64%, 61%);
+  --primary-accent-color: hsla(277, 64%, 61%, 0.75);
   --white-color: hsl(0, 0%, 100%);
   --white-color-75: hsla(0, 0%, 100%, 0.75);
   --white-color-60: hsla(0, 0%, 100%, 0.6);
@@ -71,5 +72,114 @@ root {
   color: hsl(228, 45%, 44%);
 }
 
-/* font-family: 'Inter', sans-serif;
-font-family: 'Lexend Deca', sans-serif; */
+body {
+  background-color: var(--primary-bg-color);
+  font-size: 1.5rem;
+}
+
+/* Utility classes */
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Containers */
+
+main {
+  background-color: var(--primary-card-color);
+  /* margin: 0 auto; */
+  height: 425px;
+  width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.5fr 0.5fr;
+  grid-template-areas:
+    'pitch picture'
+    'stats picture';
+
+  border-radius: 2rem;
+}
+
+section {
+  margin: 0 5% 0 5%;
+}
+
+.pitch {
+  grid-area: pitch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.stats {
+  grid-area: stats;
+  display: flex;
+  justify-content: space-around;
+}
+
+figure {
+  grid-area: picture;
+}
+
+/* text */
+
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: left;
+  line-height: 1.25;
+
+  color: var(--white-color);
+}
+
+h1 span {
+  color: var(--primary-accent-color);
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 2.5rem;
+  width: 40ch;
+  color: var(--white-color-75);
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--white-color-75);
+}
+
+div span {
+  color: var(--white-color);
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+/* 
+img {
+  width: 100%;
+  height: auto;
+  background-image: linear-gradient(var(--primary-accent-color), yellow);
+} */
+
+figure {
+  width: 100%;
+  height: auto;
+  background-image: linear-gradient(hsla(277, 64%, 61%, 0.5), hsla(277, 64%, 61%, 0.5)),
+    url('./images/image-header-desktop.jpg');
+
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
