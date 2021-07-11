@@ -54,7 +54,7 @@ table {
 
 :root {
   font-size: 62.5%; /* 10 px */
-  box-sizing: border-box;
+  /* box-sizing: border-box; this doesn't work for some reason */
   --primary-bg-color: hsl(233, 47%, 7%);
   --primary-card-color: hsl(244, 38%, 16%);
   --primary-accent-color: hsla(277, 64%, 61%, 0.75);
@@ -72,51 +72,54 @@ table {
   color: hsl(228, 45%, 44%);
 }
 
+* {
+  outline: 3px solid red;
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--primary-bg-color);
   font-size: 1.5rem;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Utility classes */
-/* https://blog.logrocket.com/flexible-layouts-without-media-queries/    <----read this */
-/* .center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
+/* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));  */
+/*  16 + (32 - 16) * (100vw - 375px) / (1440 - 375) 
 
-/* Containers */
+1440 - 375 = 1065
+ at 1440 vw font is 32px which is max
+ at 375 vw font is 16px
 
+
+
+*/
+
+/* Container's setup */
 main {
   background-color: var(--primary-card-color);
-  /* margin: 0 auto; */
+  /* height: 446px;  needs 780 */
+  /* height: min(446px, max(99vw, 780px)); */
   height: 446px;
-  min-width: 327px;
-  width: 1110px;
-  max-width: 1110px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1.5fr 0.5fr;
-  grid-template-areas:
-    'pitch picture'
-    'stats picture';
+
+  min-width: 327px; /* min-width required because clamp minimum doesn't hold */
+  width: clamp(327px, 85vw, 1110px);
+  display: flex;
+  flex-direction: row-reverse;
+
+  color: var(--white-color);
 
   border-radius: 0.8rem;
   overflow: hidden;
 }
 
-/* section {
-} */
-
-.pitch {
-  grid-area: pitch;
-  margin: 0 2rem 0 7.2rem;
+section {
+  /* padding-left: 7.2rem; */
+  padding-left: clamp(3rem, 7%, 7.2rem);
+  width: 570px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -124,46 +127,34 @@ main {
   gap: 2.5rem;
 }
 
-.stats {
-  grid-area: stats;
-  margin: 0 2rem 5.9rem 7.2rem;
+ul {
   display: flex;
   gap: 6rem;
-  /* justify-content: space-around; */
 }
 
 figure {
-  grid-area: picture;
+  flex-shrink: 0; /*img wants to shrink without this set to 0 */
+  width: 540px;
+  max-width: 100%;
+  /* min-height: 446px; */
+  height: auto;
+  background-image: url("./images/image-header-desktop.jpg"); /* 540 x 446 */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-/* text */
-
-h1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 3.6rem;
-  line-height: 4.4rem;
-
-  color: var(--white-color);
+.mask {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(hsl(277, 64%, 61%), hsl(277, 64%, 61%));
+  mix-blend-mode: multiply;
 }
 
-h1 span {
-  color: var(--primary-accent-color);
-}
-
-p {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  line-height: 2.5rem;
-  max-width: 40ch;
-  color: var(--white-color-75);
-}
-
-div {
+li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: "Lexend Deca", sans-serif;
   font-weight: 400;
   font-size: 1.2rem;
   letter-spacing: 1px;
@@ -173,67 +164,53 @@ div {
   color: var(--white-color-60);
 }
 
-div span {
+.lowercase {
+  text-transform: lowercase;
+}
+
+li span {
   color: var(--white-color);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2.4rem;
   line-height: 2.9rem;
   font-weight: 700;
 }
-/* 
-img {
-  width: 100%;
-  height: auto;
-  background-image: linear-gradient(var(--primary-accent-color), yellow);
-} */
 
-figure {
-  width: 100%;
-  height: auto;
-  background-image: url('./images/image-header-desktop.jpg');
-}
-.mask {
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(hsl(277, 64%, 61%), hsl(277, 64%, 61%));
-  mix-blend-mode: multiply;
+/* text */
+
+h1 {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 3vw, 3.6rem);
+  line-height: clamp(3.2rem, 4vw, 4.4rem);
+
+  color: var(--white-color);
 }
 
-/* MOBILE DESIGN */
-@media only screen and (max-width: 375px) {
+h1 span {
+  color: var(--primary-accent-color);
+}
+
+p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 2.5rem;
+  max-width: 40ch;
+  color: var(--white-color-75);
+}
+
+/* mobile design */
+@media only screen and (max-width: 1200px) {
   main {
+    flex-direction: column;
     height: 780px;
     width: 327px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas:
-      'picture'
-      'pitch'
-      'stats';
-  }
-
-  .stats {
-    flex-direction: column;
-    align-items: center;
-    margin: 0 0rem 2.4rem 0rem;
-  }
-
-  .pitch {
-    margin: 0;
-    justify-content: center;
-    text-align: center;
-    gap: 2.5rem;
-  }
-
-  h1 {
-    font-size: 2.8rem;
-    line-height: 3.2rem;
-    color: var(--white-color);
   }
 
   figure {
-    width: 327px;
+    width: 100%;
     height: auto;
-    background-image: url('./images/image-header-desktop.jpg');
+    padding-bottom: 100%; /*the img needs content since its a background img*/
   }
 }
