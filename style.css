@@ -65,8 +65,9 @@ table {
 
 /* CSS from Frontend Mentor */
 .attribution {
-  font-size: 11px;
+  margin-top: 5rem;
   text-align: center;
+  color: var(--white-color);
 }
 .attribution a {
   color: hsl(228, 45%, 44%);
@@ -80,7 +81,7 @@ table {
 body {
   background-color: var(--primary-bg-color);
   font-size: 1.5rem;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -216,4 +217,16 @@ p {
     flex-direction: column;
     gap: 2.4rem;
   }
+}
+
+/*scroll-bar styling for mobile */
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: var(--primary-bg-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-card-color);
+  /* outline: 1px solid var(--primary-accent-color); */
 }
