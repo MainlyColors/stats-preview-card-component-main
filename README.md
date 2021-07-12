@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Stats-Preview-Card-Component](https://ryan2505.github.io/stats-preview-card-component-main/)
+- Solution URL: [Frontend Mentor Posted solution](https://www.frontendmentor.io/solutions/pure-semantic-html5-and-css-responsive-design-S6vHOxe39)
+- Live Site URL: [Stats-Preview-Card-Component github.io site](https://ryan2505.github.io/stats-preview-card-component-main/)
 
 ## My process
 
