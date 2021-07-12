@@ -25,8 +25,8 @@ Users should be able to:
 
 ### Screenshot
 
-![x](./design/final-desktop-design.jpg)
-![x](./design/final-mobile-design.jpg)
+![Desktop Design JPG](/design/final-desktop-design.jpg?raw=true "Desktop Design")
+![Mobile Design JPG](/design/final-mobile-design.jpg?raw=true "Mobile Design")
 
 ### Links
 
