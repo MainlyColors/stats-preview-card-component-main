@@ -54,10 +54,6 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
 - ✨ During this project I learned about using the _<picture>_ tag in HTML to dynamically serve the correct size image based on screen size parameters. In the below HTML we use the _<source>_ tag to define options for each parameter defined with the _media_ attribute then use the _scrset_ attribute to give the image location. For browsers that don't support _<picture>_ or when the parameters can't be matched, we include a default _<img>_ tag.
 
 ```html
